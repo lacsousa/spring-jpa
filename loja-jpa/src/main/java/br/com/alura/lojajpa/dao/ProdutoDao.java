@@ -29,6 +29,7 @@ public class ProdutoDao {
 				Produto.class).getResultList();
 	}
 	
+	// Passando parâmetros
 	public List<Produto> buscarPorNome(String nome) {
         String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome";
         return em.createQuery(jpql, Produto.class)
@@ -36,7 +37,7 @@ public class ProdutoDao {
                         .getResultList();
 	}
 	
-	
+	// navegando pelos objetos e relacionamentos
 	public List<Produto> buscarPorNomeCategoria(String nomeCat) {
         String jpql = 
         		"SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
@@ -45,6 +46,7 @@ public class ProdutoDao {
                         .getResultList();
 	}
 	
+	//retornando apenas um atributo
 	public BigDecimal buscarPrecoDoProdutoComNome(String nome) {
         String jpql = "SELECT p.preco FROM Produto p WHERE p.nome = :nome";
         return em.createQuery(jpql, BigDecimal.class)

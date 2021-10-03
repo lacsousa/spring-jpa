@@ -80,5 +80,10 @@ public class ItemPedido {
 		this.precoUnitario = precoUnitario;
 	}
 
+	public BigDecimal getValor() {
+		
+		return precoUnitario.multiply(new BigDecimal(quantidade));
+	}
+
 	
 }
