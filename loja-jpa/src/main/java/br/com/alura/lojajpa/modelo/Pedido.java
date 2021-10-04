@@ -31,7 +31,8 @@ public class Pedido {
 	private Cliente cliente;
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<ItemPedido> listaItensPedidos= new ArrayList<ItemPedido>();
+	private List<ItemPedido> listaItensPedidos = 
+		new ArrayList<ItemPedido>();
 	
 	public Pedido() {
 
