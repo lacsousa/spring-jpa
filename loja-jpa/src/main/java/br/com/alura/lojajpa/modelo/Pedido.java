@@ -8,6 +8,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,13 +28,20 @@ public class Pedido {
 	private BigDecimal valorTotal = BigDecimal.ZERO;
 	private LocalDate data = LocalDate.now();
 
-	@ManyToOne
+	// por padrão todo relacionamento ToOne
+	// sempre vai carregar os relacionamentos
+	// padrão é EAGER
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 
+	// Os relacionamentos ToMany NÃO são carregados 
+	// automaticamente
+	// Ou seja, por padrão são LAZY
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> listaItensPedidos = 
 		new ArrayList<ItemPedido>();
 	
+
 	public Pedido() {
 
 	}
@@ -81,4 +89,12 @@ public class Pedido {
 	}
 
 
+	public List<ItemPedido> getListaItensPedidos() {
+		return listaItensPedidos;
+	}
+
+	public void setListaItensPedidos(List<ItemPedido> listaItensPedidos) {
+		this.listaItensPedidos = listaItensPedidos;
+	}
+	
 }
