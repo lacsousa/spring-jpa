@@ -23,11 +23,20 @@ public class PerformanceConsultas {
 		popularBancoDeDados();
 		
 		EntityManager em2 = JPAUtil.getEntityManager();
-		Pedido pedido = em2.find(Pedido.class, 1l);
+		//Pedido pedido = em2.find(Pedido.class, 1l);
+		
+		PedidoDao pedidoDao = new PedidoDao(em2);
+		Pedido pedido = pedidoDao.buscarPedidoComCliente(1l); 
 		
 		System.out.println("Data do pedido: " + pedido.getData());
-		System.out.println("Quantidade de Itens: " + 
-				pedido.getListaItensPedidos().size());
+		
+		em2.close(); 
+		// forçando o problema do LazyInitializationException
+		System.out.println("Cliente: " + 
+				pedido.getCliente().getNome());
+		
+//		System.out.println("Quantidade de Itens: " + 
+//				pedido.getListaItensPedidos().size());
 		
 	}
 	
