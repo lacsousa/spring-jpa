@@ -44,6 +44,7 @@ public class PedidoDao {
 	}
 	*/
 	
+	// Queries geralmente para Relatórios
 	public List<RelatorioVendasVO> relatorioVendas() {
 		String jpql = 
 			"SELECT new br.com.alura.lojajpa.vo.RelatorioVendasVO("
